@@ -1,0 +1,200 @@
+﻿@page
+@model Volcano.Pages.CreateModel
+@{
+}
+    <head>
+        <style>
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+                /*flex-wrap: wrap;*/
+                /*width: 100%*/
+            }
+
+            #qwe {
+                transform: scale(1.3);
+                opacity: 0.9;
+                cursor: pointer;
+            }
+
+            .flex-container div {
+                padding: 10px;
+                /*width: 100%*/
+            }
+
+            .box-1 {
+                display: flex;
+                /*width: 1000px;*/
+                flex-wrap: wrap;
+                flex-direction: row;
+            }
+
+                .box-1 div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 70px;
+                    font-size: 14px;
+                    transform: scale(1.3);
+                    opacity: 0.9;
+                    cursor: pointer;
+                }
+
+            .box-2 {
+                display: flex;
+                flex-direction: row;
+            }
+        </style>
+    </head>
+<h1>Добавление данных</h1>
+<div asp-validation-summary="All"></div>
+<form method="POST" class="flex-container">
+    <div>
+        <label>Имя</label><br /><input asp-for="Vulka.Name" /><br />
+        <label>NL:</label><br /><input asp-for="Vulka.NL" type="number" /><br />
+        <label>NLM:</label><br /><input asp-for="Vulka.NLM" type="number" /><br />
+        <label>EL:</label><br /><input asp-for="Vulka.EL" type="number" /><br />
+        <label>ELM:</label><br /><input asp-for="Vulka.ELM" type="number" /><br />
+        <br />
+        <input type="submit" value="Отправить" id="butt" />
+    </div>
+
+    <div class="box-1">
+        <div><label title="Название свойства">1: <input asp-for="Vulka.P1" /></label></div>
+        <div><label>2: <input asp-for="Vulka.P2" /></label></div>
+        <div><label>3: <input asp-for="Vulka.P3" /></label></div>
+        <div><label>4: <input asp-for="Vulka.P4" /></label></div>
+        <div><label>5: <input asp-for="Vulka.P5" /></label></div>
+        <div><label>6: <input asp-for="Vulka.P6" /></label></div>
+        <div><label>7: <input asp-for="Vulka.P7" /></label></div>
+        <div><label>8: <input asp-for="Vulka.P8" /></label></div>
+        <div><label>9: <input asp-for="Vulka.P9" /></label></div>
+        <div><label>10: <input asp-for="Vulka.P10" /></label></div>
+        <div><label>11: <input asp-for="Vulka.P11" /></label></div>
+        <div><label>12: <input asp-for="Vulka.P12" /></label></div>
+        <div><label>13: <input asp-for="Vulka.P13" /></label></div>
+        <div><label>14: <input asp-for="Vulka.P14" /></label></div>
+        <div><label>15: <input asp-for="Vulka.P15" /></label></div>
+        <div><label>16: <input asp-for="Vulka.P16" /></label></div>
+        <div><label>17: <input asp-for="Vulka.P17" /></label></div>
+        <div><label>18: <input asp-for="Vulka.P18" /></label></div>
+        <div><label>19: <input asp-for="Vulka.P19" /></label></div>
+        <div><label>20: <input asp-for="Vulka.P20" /></label></div>
+        <div><label>21: <input asp-for="Vulka.P21" /></label></div>
+        <div><label>22: <input asp-for="Vulka.P22" /></label></div>
+        <div><label>23: <input asp-for="Vulka.P23" /></label></div>
+        <div><label>24: <input asp-for="Vulka.P24" /></label></div>
+        <div><label>25: <input asp-for="Vulka.P25" /></label></div>
+        <div><label>26: <input asp-for="Vulka.P26" /></label></div>
+        <div><label>27: <input asp-for="Vulka.P27" /></label></div>
+        <div><label>28: <input asp-for="Vulka.P28" /></label></div>
+        <div><label>29: <input asp-for="Vulka.P29" /></label></div>
+        <div><label>30: <input asp-for="Vulka.P30" /></label></div>
+        <div><label>31: <input asp-for="Vulka.P31" /></label></div>
+        <div><label>32: <input asp-for="Vulka.P32" /></label></div>
+        <div><label>33: <input asp-for="Vulka.P33" /></label></div>
+        <div><label>34: <input asp-for="Vulka.P34" /></label></div>
+        <div><label>35: <input asp-for="Vulka.P35" /></label></div>
+        <div><label>36: <input asp-for="Vulka.P36" /></label></div>
+        <div><label>37: <input asp-for="Vulka.P37" /></label></div>
+        <div><label>38: <input asp-for="Vulka.P38" /></label></div>
+        <div><label>39: <input asp-for="Vulka.P39" /></label></div>
+        <div><label>40: <input asp-for="Vulka.P40" /></label></div>
+        <div><label>41: <input asp-for="Vulka.P41" /></label></div>
+        <div><label>42: <input asp-for="Vulka.P42" /></label></div>
+        <div><label>43: <input asp-for="Vulka.P43" /></label></div>
+        <div><label>44: <input asp-for="Vulka.P44" /></label></div>
+        <div><label>45: <input asp-for="Vulka.P45" /></label></div>
+        <div><label>46: <input asp-for="Vulka.P46" /></label></div>
+        <div><label>47: <input asp-for="Vulka.P47" /></label></div>
+        <div><label>48: <input asp-for="Vulka.P48" /></label></div>
+        <div><label>49: <input asp-for="Vulka.P49" /></label></div>
+        <div><label>50: <input asp-for="Vulka.P50" /></label></div>
+        <div><label>51: <input asp-for="Vulka.P51" /></label></div>
+        <div><label>52: <input asp-for="Vulka.P52" /></label></div>
+        <div><label>53: <input asp-for="Vulka.P53" /></label></div>
+        <div><label>54: <input asp-for="Vulka.P54" /></label></div>
+        <div><label>55: <input asp-for="Vulka.P55" /></label></div>
+        <div><label>56: <input asp-for="Vulka.P56" /></label></div>
+        <div><label>57: <input asp-for="Vulka.P57" /></label></div>
+        <div><label>58: <input asp-for="Vulka.P58" /></label></div>
+        <div><label>59: <input asp-for="Vulka.P59" /></label></div>
+        <div><label>60: <input asp-for="Vulka.P60" /></label></div>
+        <div><label>61: <input asp-for="Vulka.P61" /></label></div>
+        <div><label>62: <input asp-for="Vulka.P62" /></label></div>
+        <div><label>63: <input asp-for="Vulka.P63" /></label></div>
+        <div><label>64: <input asp-for="Vulka.P64" /></label></div>
+        <div><label>65: <input asp-for="Vulka.P65" /></label></div>
+        <div><label>66: <input asp-for="Vulka.P66" /></label></div>
+        <div><label>67: <input asp-for="Vulka.P67" /></label></div>
+        <div><label>68: <input asp-for="Vulka.P68" /></label></div>
+        <div><label>69: <input asp-for="Vulka.P69" /></label></div>
+        <div><label>70: <input asp-for="Vulka.P70" /></label></div>
+        <div><label>71: <input asp-for="Vulka.P71" /></label></div>
+        <div><label>72: <input asp-for="Vulka.P72" /></label></div>
+        <div><label>73: <input asp-for="Vulka.P73" /></label></div>
+        <div><label>74: <input asp-for="Vulka.P74" /></label></div>
+        <div><label>75: <input asp-for="Vulka.P75" /></label></div>
+        <div><label>76: <input asp-for="Vulka.P76" /></label></div>
+        <div><label>77: <input asp-for="Vulka.P77" /></label></div>
+        <div><label>78: <input asp-for="Vulka.P78" /></label></div>
+        <div><label>79: <input asp-for="Vulka.P79" /></label></div>
+        <div><label>80: <input asp-for="Vulka.P80" /></label></div>
+        <div><label>81: <input asp-for="Vulka.P81" /></label></div>
+        <div><label>82: <input asp-for="Vulka.P82" /></label></div>
+        <div><label>83: <input asp-for="Vulka.P83" /></label></div>
+        <div><label>84: <input asp-for="Vulka.P84" /></label></div>
+        <div><label>85: <input asp-for="Vulka.P85" /></label></div>
+        <div><label>86: <input asp-for="Vulka.P86" /></label></div>
+        <div><label>87: <input asp-for="Vulka.P87" /></label></div>
+        <div><label>88: <input asp-for="Vulka.P88" /></label></div>
+        <div><label>89: <input asp-for="Vulka.P89" /></label></div>
+        <div><label>90: <input asp-for="Vulka.P90" /></label></div>
+        <div><label>91: <input asp-for="Vulka.P91" /></label></div>
+        <div><label>92: <input asp-for="Vulka.P92" /></label></div>
+        <div><label>93: <input asp-for="Vulka.P93" /></label></div>
+        <div><label>94: <input asp-for="Vulka.P94" /></label></div>
+        <div><label>95: <input asp-for="Vulka.P95" /></label></div>
+        <div><label>96: <input asp-for="Vulka.P96" /></label></div>
+        <div><label>97: <input asp-for="Vulka.P97" /></label></div>
+        <div><label>98: <input asp-for="Vulka.P98" /></label></div>
+        <div><label>99: <input asp-for="Vulka.P99" /></label></div>
+        <div><label>100: <input asp-for="Vulka.P100" /></label></div>
+        <div><label>101: <input asp-for="Vulka.P101" /></label></div>
+        <div><label>102: <input asp-for="Vulka.P102" /></label></div>
+        <div><label>103: <input asp-for="Vulka.P103" /></label></div>
+        <div><label>104: <input asp-for="Vulka.P104" /></label></div>
+        <div><label>105: <input asp-for="Vulka.P105" /></label></div>
+        <div><label>106: <input asp-for="Vulka.P106" /></label></div>
+        <div><label>107: <input asp-for="Vulka.P107" /></label></div>
+        <div><label>108: <input asp-for="Vulka.P108" /></label></div>
+        <div><label>109: <input asp-for="Vulka.P109" /></label></div>
+        <div><label>110: <input asp-for="Vulka.P110" /></label></div>
+        <div><label>111: <input asp-for="Vulka.P111" /></label></div>
+        <div><label>112: <input asp-for="Vulka.P112" /></label></div>
+        <div><label>113: <input asp-for="Vulka.P113" /></label></div>
+        <div><label>114: <input asp-for="Vulka.P114" /></label></div>
+        <div><label>115: <input asp-for="Vulka.P115" /></label></div>
+        <div><label>116: <input asp-for="Vulka.P116" /></label></div>
+        <div><label>117: <input asp-for="Vulka.P117" /></label></div>
+        <div><label>118: <input asp-for="Vulka.P118" /></label></div>
+        <div><label>119: <input asp-for="Vulka.P119" /></label></div>
+        <div><label>120: <input asp-for="Vulka.P120" /></label></div>
+        <div><label>121: <input asp-for="Vulka.P121" /></label></div>
+        <div><label>122: <input asp-for="Vulka.P122" /></label></div>
+        <div><label>123: <input asp-for="Vulka.P123" /></label></div>
+        <div><label>124: <input asp-for="Vulka.P124" /></label></div>
+        <div><label>125: <input asp-for="Vulka.P125" /></label></div>
+        <div><label>126: <input asp-for="Vulka.P126" /></label></div>
+        <div><label>127: <input asp-for="Vulka.P127" /></label></div>
+        <div><label>128: <input asp-for="Vulka.P128" /></label></div>
+        <div><label>129: <input asp-for="Vulka.P129" /></label></div>
+        <div><label>130: <input asp-for="Vulka.P130" /></label></div>
+        <div><label>131: <input asp-for="Vulka.P131" /></label></div>
+        <div><label>132: <input asp-for="Vulka.P132" /></label></div>
+        <div><label>133: <input asp-for="Vulka.P133" /></label></div>
+        <div><label>134: <input asp-for="Vulka.P134" /></label></div>
+        <div><label>135: <input asp-for="Vulka.P135" id="qwe"/></label></div>
+    </div>
+</form>

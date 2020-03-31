@@ -1,0 +1,39 @@
+﻿@page
+@model Volcano.Pages.DeleteModel
+@{
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<form method="POST" class="flex-container">
+   <div>
+   <select asp-for="Vulka.Name" id="select">
+       @foreach (var hill in Model.Vulk)
+        {
+           <option value="@hill.Name">@hill.Name</option>
+        }
+   </select>
+   <input type="submit" value="Удолить" id="butt" />
+   </div>
+</form>
+<script>
+    $('#butt').on('click', function ()
+    {
+        var num = $('#select').val();
+        $.ajax
+            ({
+                url: '/Delete?handler=Franky&name='+num,
+                type: "POST",
+                async: true,
+                contentType: "application/json",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                success: function (data) {
+                },
+            });
+    });
+
+
+
+</script>

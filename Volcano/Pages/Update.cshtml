@@ -1,0 +1,387 @@
+﻿@page 
+@model Volcano.Pages.UpdateModel
+@{
+}
+@Html.AntiForgeryToken()
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<head>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            /*flex-wrap: wrap;*/
+            /*width: 100%*/
+        }
+
+        #qwe {
+            transform: scale(1.3);
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .flex-container div {
+            padding: 10px;
+            /*width: 100%*/
+        }
+
+        .box-1 {
+            display: flex;
+            /*width: 1000px;*/
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+            .box-1 div {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 70px;
+                font-size: 14px;
+                transform: scale(1.3);
+                opacity: 0.9;
+                cursor: pointer;
+            }
+
+        .box-2 {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<h1>Обновление данных</h1>
+<div asp-validation-summary="All"></div>
+<form method="POST" class="flex-container">
+    <div>
+        <select asp-for="Vulka.Name" id="select">
+            <option selected disabled>Выберите вулканчик</option>
+            @foreach (var hill in Model.Vulk)
+            {
+                <option value="@hill.Name">@hill.Name</option>
+            }
+        </select>
+        <br />
+        @*<label>Имя</label><br /><input asp-for="Vulka.Name" /><br />*@
+        <label>NL:</label><br /><input id="NL" asp-for="Vulka.NL" type="number" /><br />
+        <label>NLM:</label><br /><input id="NLM" asp-for="Vulka.NLM" type="number" /><br />
+        <label>EL:</label><br /><input id="EL" asp-for="Vulka.EL" type="number" /><br />
+        <label>ELM:</label><br /><input id="ELM" asp-for="Vulka.ELM" type="number" /><br />
+        <br />
+        <input type="submit" value="Изменить" id="butt" />
+    </div>
+
+    <div class="box-1">
+        <div><label title="Название свойства">1: <input id="1" asp-for="Vulka.P1" /></label></div>
+        <div><label>2: <input id="2" asp-for="Vulka.P2" /></label></div>
+        <div><label>3: <input id="3" asp-for="Vulka.P3" /></label></div>
+        <div><label>4: <input id="4" asp-for="Vulka.P4" /></label></div>
+        <div><label>5: <input id="5" asp-for="Vulka.P5" /></label></div>
+        <div><label>6: <input id="6" asp-for="Vulka.P6" /></label></div>
+        <div><label>7: <input id="7" asp-for="Vulka.P7" /></label></div>
+        <div><label>8: <input id="8" asp-for="Vulka.P8" /></label></div>
+        <div><label>9: <input id="9" asp-for="Vulka.P9" /></label></div>
+        <div><label>10: <input id="10" asp-for="Vulka.P10" /></label></div>
+        <div><label>11: <input id="11" asp-for="Vulka.P11" /></label></div>
+        <div><label>12: <input id="12" asp-for="Vulka.P12" /></label></div>
+        <div><label>13: <input id="13" asp-for="Vulka.P13" /></label></div>
+        <div><label>14: <input id="14" asp-for="Vulka.P14" /></label></div>
+        <div><label>15: <input id="15" asp-for="Vulka.P15" /></label></div>
+        <div><label>16: <input id="16" asp-for="Vulka.P16" /></label></div>
+        <div><label>17: <input id="17" asp-for="Vulka.P17" /></label></div>
+        <div><label>18: <input id="18" asp-for="Vulka.P18" /></label></div>
+        <div><label>19: <input id="19" asp-for="Vulka.P19" /></label></div>
+        <div><label>20: <input id="20" asp-for="Vulka.P20" /></label></div>
+        <div><label>21: <input id="21" asp-for="Vulka.P21" /></label></div>
+        <div><label>22: <input id="22" asp-for="Vulka.P22" /></label></div>
+        <div><label>23: <input id="23" asp-for="Vulka.P23" /></label></div>
+        <div><label>24: <input id="24" asp-for="Vulka.P24" /></label></div>
+        <div><label>25: <input id="25" asp-for="Vulka.P25" /></label></div>
+        <div><label>26: <input id="26" asp-for="Vulka.P26" /></label></div>
+        <div><label>27: <input id="27" asp-for="Vulka.P27" /></label></div>
+        <div><label>28: <input id="28" asp-for="Vulka.P28" /></label></div>
+        <div><label>29: <input id="29" asp-for="Vulka.P29" /></label></div>
+        <div><label>30: <input id="30" asp-for="Vulka.P30" /></label></div>
+        <div><label>31: <input id="31" asp-for="Vulka.P31" /></label></div>
+        <div><label>32: <input id="32" asp-for="Vulka.P32" /></label></div>
+        <div><label>33: <input id="33" asp-for="Vulka.P33" /></label></div>
+        <div><label>34: <input id="34" asp-for="Vulka.P34" /></label></div>
+        <div><label>35: <input id="35" asp-for="Vulka.P35" /></label></div>
+        <div><label>36: <input id="36" asp-for="Vulka.P36" /></label></div>
+        <div><label>37: <input id="37" asp-for="Vulka.P37" /></label></div>
+        <div><label>38: <input id="38" asp-for="Vulka.P38" /></label></div>
+        <div><label>39: <input id="39" asp-for="Vulka.P39" /></label></div>
+        <div><label>40: <input id="40" asp-for="Vulka.P40" /></label></div>
+        <div><label>41: <input id="41" asp-for="Vulka.P41" /></label></div>
+        <div><label>42: <input id="42" asp-for="Vulka.P42" /></label></div>
+        <div><label>43: <input id="43" asp-for="Vulka.P43" /></label></div>
+        <div><label>44: <input id="44" asp-for="Vulka.P44" /></label></div>
+        <div><label>45: <input id="45" asp-for="Vulka.P45" /></label></div>
+        <div><label>46: <input id="46" asp-for="Vulka.P46" /></label></div>
+        <div><label>47: <input id="47" asp-for="Vulka.P47" /></label></div>
+        <div><label>48: <input id="48" asp-for="Vulka.P48" /></label></div>
+        <div><label>49: <input id="49" asp-for="Vulka.P49" /></label></div>
+        <div><label>50: <input id="50" asp-for="Vulka.P50" /></label></div>
+        <div><label>51: <input id="51" asp-for="Vulka.P51" /></label></div>
+        <div><label>52: <input id="52" asp-for="Vulka.P52" /></label></div>
+        <div><label>53: <input id="53" asp-for="Vulka.P53" /></label></div>
+        <div><label>54: <input id="54" asp-for="Vulka.P54" /></label></div>
+        <div><label>55: <input id="55" asp-for="Vulka.P55" /></label></div>
+        <div><label>56: <input id="56" asp-for="Vulka.P56" /></label></div>
+        <div><label>57: <input id="57" asp-for="Vulka.P57" /></label></div>
+        <div><label>58: <input id="58" asp-for="Vulka.P58" /></label></div>
+        <div><label>59: <input id="59" asp-for="Vulka.P59" /></label></div>
+        <div><label>60: <input id="60" asp-for="Vulka.P60" /></label></div>
+        <div><label>61: <input id="61" asp-for="Vulka.P61" /></label></div>
+        <div><label>62: <input id="62" asp-for="Vulka.P62" /></label></div>
+        <div><label>63: <input id="63" asp-for="Vulka.P63" /></label></div>
+        <div><label>64: <input id="64" asp-for="Vulka.P64" /></label></div>
+        <div><label>65: <input id="65" asp-for="Vulka.P65" /></label></div>
+        <div><label>66: <input id="66" asp-for="Vulka.P66" /></label></div>
+        <div><label>67: <input id="67" asp-for="Vulka.P67" /></label></div>
+        <div><label>68: <input id="68" asp-for="Vulka.P68" /></label></div>
+        <div><label>69: <input id="69" asp-for="Vulka.P69" /></label></div>
+        <div><label>70: <input id="70" asp-for="Vulka.P70" /></label></div>
+        <div><label>71: <input id="71" asp-for="Vulka.P71" /></label></div>
+        <div><label>72: <input id="72" asp-for="Vulka.P72" /></label></div>
+        <div><label>73: <input id="73" asp-for="Vulka.P73" /></label></div>
+        <div><label>74: <input id="74" asp-for="Vulka.P74" /></label></div>
+        <div><label>75: <input id="75" asp-for="Vulka.P75" /></label></div>
+        <div><label>76: <input id="76" asp-for="Vulka.P76" /></label></div>
+        <div><label>77: <input id="77" asp-for="Vulka.P77" /></label></div>
+        <div><label>78: <input id="78" asp-for="Vulka.P78" /></label></div>
+        <div><label>79: <input id="79" asp-for="Vulka.P79" /></label></div>
+        <div><label>80: <input id="80" asp-for="Vulka.P80" /></label></div>
+        <div><label>81: <input id="81" asp-for="Vulka.P81" /></label></div>
+        <div><label>82: <input id="82" asp-for="Vulka.P82" /></label></div>
+        <div><label>83: <input id="83" asp-for="Vulka.P83" /></label></div>
+        <div><label>84: <input id="84" asp-for="Vulka.P84" /></label></div>
+        <div><label>85: <input id="85" asp-for="Vulka.P85" /></label></div>
+        <div><label>86: <input id="86" asp-for="Vulka.P86" /></label></div>
+        <div><label>87: <input id="87" asp-for="Vulka.P87" /></label></div>
+        <div><label>88: <input id="88" asp-for="Vulka.P88" /></label></div>
+        <div><label>89: <input id="89" asp-for="Vulka.P89" /></label></div>
+        <div><label>90: <input id="90" asp-for="Vulka.P90" /></label></div>
+        <div><label>91: <input id="91" asp-for="Vulka.P91" /></label></div>
+        <div><label>92: <input id="92" asp-for="Vulka.P92" /></label></div>
+        <div><label>93: <input id="93" asp-for="Vulka.P93" /></label></div>
+        <div><label>94: <input id="94" asp-for="Vulka.P94" /></label></div>
+        <div><label>95: <input id="95" asp-for="Vulka.P95" /></label></div>
+        <div><label>96: <input id="96" asp-for="Vulka.P96" /></label></div>
+        <div><label>97: <input id="97" asp-for="Vulka.P97" /></label></div>
+        <div><label>98: <input id="98" asp-for="Vulka.P98" /></label></div>
+        <div><label>99: <input id="99" asp-for="Vulka.P99" /></label></div>
+        <div><label>100: <input id="100" asp-for="Vulka.P100" /></label></div>
+        <div><label>101: <input id="101" asp-for="Vulka.P101" /></label></div>
+        <div><label>102: <input id="102" asp-for="Vulka.P102" /></label></div>
+        <div><label>103: <input id="103" asp-for="Vulka.P103" /></label></div>
+        <div><label>104: <input id="104" asp-for="Vulka.P104" /></label></div>
+        <div><label>105: <input id="105" asp-for="Vulka.P105" /></label></div>
+        <div><label>106: <input id="106" asp-for="Vulka.P106" /></label></div>
+        <div><label>107: <input id="107" asp-for="Vulka.P107" /></label></div>
+        <div><label>108: <input id="108" asp-for="Vulka.P108" /></label></div>
+        <div><label>109: <input id="109" asp-for="Vulka.P109" /></label></div>
+        <div><label>110: <input id="110" asp-for="Vulka.P110" /></label></div>
+        <div><label>111: <input id="111" asp-for="Vulka.P111" /></label></div>
+        <div><label>112: <input id="112" asp-for="Vulka.P112" /></label></div>
+        <div><label>113: <input id="113" asp-for="Vulka.P113" /></label></div>
+        <div><label>114: <input id="114" asp-for="Vulka.P114" /></label></div>
+        <div><label>115: <input id="115" asp-for="Vulka.P115" /></label></div>
+        <div><label>116: <input id="116" asp-for="Vulka.P116" /></label></div>
+        <div><label>117: <input id="117" asp-for="Vulka.P117" /></label></div>
+        <div><label>118: <input id="118" asp-for="Vulka.P118" /></label></div>
+        <div><label>119: <input id="119" asp-for="Vulka.P119" /></label></div>
+        <div><label>120: <input id="120" asp-for="Vulka.P120" /></label></div>
+        <div><label>121: <input id="121" asp-for="Vulka.P121" /></label></div>
+        <div><label>122: <input id="122" asp-for="Vulka.P122" /></label></div>
+        <div><label>123: <input id="123" asp-for="Vulka.P123" /></label></div>
+        <div><label>124: <input id="124" asp-for="Vulka.P124" /></label></div>
+        <div><label>125: <input id="125" asp-for="Vulka.P125" /></label></div>
+        <div><label>126: <input id="126" asp-for="Vulka.P126" /></label></div>
+        <div><label>127: <input id="127" asp-for="Vulka.P127" /></label></div>
+        <div><label>128: <input id="128" asp-for="Vulka.P128" /></label></div>
+        <div><label>129: <input id="129" asp-for="Vulka.P129" /></label></div>
+        <div><label>130: <input id="130" asp-for="Vulka.P130" /></label></div>
+        <div><label>131: <input id="131" asp-for="Vulka.P131" /></label></div>
+        <div><label>132: <input id="132" asp-for="Vulka.P132" /></label></div>
+        <div><label>133: <input id="133" asp-for="Vulka.P133" /></label></div>
+        <div><label>134: <input id="134" asp-for="Vulka.P134" /></label></div>
+        <div><label>135: <input id="135" asp-for="Vulka.P135" /></label></div>
+    </div>
+</form>
+<script>
+    //$('#goj').on('click', function () {
+    //    console.log("podtr");
+    //    $('#qwe').val(15654);
+    //});
+
+    $('#select').change(function () {
+        var num = $('#select').val();
+        $.ajax
+            ({
+                url: '/Update?handler=Franky&name='+num,
+                type: "GET",
+                async: true,
+                contentType: "application/json",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                success: function (data) {
+                    $('#NL').val(data[0].nl);
+                    $('#NLM').val(data[0].nlm);
+                    $('#EL').val(data[0].el);
+                    $('#ELM').val(data[0].elm);
+
+                    $('#1').prop('checked', data[0].p1);
+                    $('#2').prop('checked', data[0].p2);
+                    $('#3').prop('checked', data[0].p3);
+                    $('#4').prop('checked', data[0].p4);
+                    $('#5').prop('checked', data[0].p5);
+                    $('#6').prop('checked', data[0].p6);
+                    $('#7').prop('checked', data[0].p7);
+                    $('#8').prop('checked', data[0].p8);
+                    $('#9').prop('checked', data[0].p9);
+                    $('#10').prop('checked', data[0].p10);
+
+                    $('#11').prop('checked', data[0].p11);
+                    $('#12').prop('checked', data[0].p12);
+                    $('#13').prop('checked', data[0].p13);
+                    $('#14').prop('checked', data[0].p14);
+                    $('#15').prop('checked', data[0].p15);
+                    $('#16').prop('checked', data[0].p16);
+                    $('#17').prop('checked', data[0].p17);
+                    $('#18').prop('checked', data[0].p18);
+                    $('#19').prop('checked', data[0].p19);
+                    $('#20').prop('checked', data[0].p20);
+
+                    $('#21').prop('checked', data[0].p21);
+                    $('#22').prop('checked', data[0].p22);
+                    $('#23').prop('checked', data[0].p23);
+                    $('#24').prop('checked', data[0].p24);
+                    $('#25').prop('checked', data[0].p25);
+                    $('#26').prop('checked', data[0].p26);
+                    $('#27').prop('checked', data[0].p27);
+                    $('#28').prop('checked', data[0].p28);
+                    $('#29').prop('checked', data[0].p29);
+                    $('#30').prop('checked', data[0].p30);
+
+                    $('#31').prop('checked', data[0].p31);
+                    $('#32').prop('checked', data[0].p32);
+                    $('#33').prop('checked', data[0].p33);
+                    $('#34').prop('checked', data[0].p34);
+                    $('#35').prop('checked', data[0].p35);
+                    $('#36').prop('checked', data[0].p36);
+                    $('#37').prop('checked', data[0].p37);
+                    $('#38').prop('checked', data[0].p38);
+                    $('#39').prop('checked', data[0].p39);
+                    $('#40').prop('checked', data[0].p40);
+
+                    $('#41').prop('checked', data[0].p41);
+                    $('#42').prop('checked', data[0].p42);
+                    $('#43').prop('checked', data[0].p43);
+                    $('#44').prop('checked', data[0].p44);
+                    $('#45').prop('checked', data[0].p45);
+                    $('#46').prop('checked', data[0].p46);
+                    $('#47').prop('checked', data[0].p47);
+                    $('#48').prop('checked', data[0].p48);
+                    $('#49').prop('checked', data[0].p49);
+                    $('#50').prop('checked', data[0].p50);
+
+                    $('#51').prop('checked', data[0].p51);
+                    $('#52').prop('checked', data[0].p52);
+                    $('#53').prop('checked', data[0].p53);
+                    $('#54').prop('checked', data[0].p54);
+                    $('#55').prop('checked', data[0].p55);
+                    $('#56').prop('checked', data[0].p56);
+                    $('#57').prop('checked', data[0].p57);
+                    $('#58').prop('checked', data[0].p58);
+                    $('#59').prop('checked', data[0].p59);
+                    $('#60').prop('checked', data[0].p60);
+
+                    $('#61').prop('checked', data[0].p61);
+                    $('#62').prop('checked', data[0].p62);
+                    $('#63').prop('checked', data[0].p63);
+                    $('#64').prop('checked', data[0].p64);
+                    $('#65').prop('checked', data[0].p65);
+                    $('#66').prop('checked', data[0].p66);
+                    $('#67').prop('checked', data[0].p67);
+                    $('#68').prop('checked', data[0].p68);
+                    $('#69').prop('checked', data[0].p69);
+                    $('#70').prop('checked', data[0].p70);
+
+                    $('#71').prop('checked', data[0].p71);
+                    $('#72').prop('checked', data[0].p72);
+                    $('#73').prop('checked', data[0].p73);
+                    $('#74').prop('checked', data[0].p74);
+                    $('#75').prop('checked', data[0].p75);
+                    $('#76').prop('checked', data[0].p76);
+                    $('#77').prop('checked', data[0].p77);
+                    $('#78').prop('checked', data[0].p78);
+                    $('#79').prop('checked', data[0].p79);
+                    $('#80').prop('checked', data[0].p80);
+
+                    $('#81').prop('checked', data[0].p81);
+                    $('#82').prop('checked', data[0].p82);
+                    $('#83').prop('checked', data[0].p83);
+                    $('#84').prop('checked', data[0].p84);
+                    $('#85').prop('checked', data[0].p85);
+                    $('#86').prop('checked', data[0].p86);
+                    $('#87').prop('checked', data[0].p87);
+                    $('#88').prop('checked', data[0].p88);
+                    $('#89').prop('checked', data[0].p89);
+                    $('#90').prop('checked', data[0].p90);
+
+                    $('#91').prop('checked', data[0].p91);
+                    $('#92').prop('checked', data[0].p92);
+                    $('#93').prop('checked', data[0].p93);
+                    $('#94').prop('checked', data[0].p94);
+                    $('#95').prop('checked', data[0].p95);
+                    $('#96').prop('checked', data[0].p96);
+                    $('#97').prop('checked', data[0].p97);
+                    $('#98').prop('checked', data[0].p98);
+                    $('#99').prop('checked', data[0].p99);
+                    $('#100').prop('checked', data[0].p100);
+
+                    $('#101').prop('checked', data[0].p101);
+                    $('#102').prop('checked', data[0].p102);
+                    $('#103').prop('checked', data[0].p103);
+                    $('#104').prop('checked', data[0].p104);
+                    $('#105').prop('checked', data[0].p105);
+                    $('#106').prop('checked', data[0].p106);
+                    $('#107').prop('checked', data[0].p107);
+                    $('#108').prop('checked', data[0].p108);
+                    $('#109').prop('checked', data[0].p109);
+                    $('#110').prop('checked', data[0].p110);
+
+                    $('#111').prop('checked', data[0].p111);
+                    $('#112').prop('checked', data[0].p112);
+                    $('#113').prop('checked', data[0].p113);
+                    $('#114').prop('checked', data[0].p114);
+                    $('#115').prop('checked', data[0].p115);
+                    $('#116').prop('checked', data[0].p116);
+                    $('#117').prop('checked', data[0].p117);
+                    $('#118').prop('checked', data[0].p118);
+                    $('#119').prop('checked', data[0].p119);
+                    $('#120').prop('checked', data[0].p120);
+
+                    $('#121').prop('checked', data[0].p121);
+                    $('#122').prop('checked', data[0].p122);
+                    $('#123').prop('checked', data[0].p123);
+                    $('#124').prop('checked', data[0].p124);
+                    $('#125').prop('checked', data[0].p125);
+                    $('#126').prop('checked', data[0].p126);
+                    $('#127').prop('checked', data[0].p127);
+                    $('#128').prop('checked', data[0].p128);
+                    $('#129').prop('checked', data[0].p129);
+                    $('#130').prop('checked', data[0].p130);
+
+                    $('#131').prop('checked', data[0].p131);
+                    $('#132').prop('checked', data[0].p132);
+                    $('#133').prop('checked', data[0].p133);
+                    $('#134').prop('checked', data[0].p134);
+                    $('#135').prop('checked', data[0].p135);
+                },
+            });
+    });
+</script>
