@@ -55,6 +55,7 @@
     <div>
         <select asp-for="Vulka.Name" id="select">
             <option selected disabled>Выберите вулканчик</option>
+            <div></div>
             @foreach (var hill in Model.Vulk)
             {
                 <option value="@hill.Name">@hill.Name</option>
