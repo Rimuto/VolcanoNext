@@ -4,38 +4,111 @@
     ViewData["Title"] = "Google Map";
 }
 
-    <html>
-    <head>
-        <title>Simple Map</title>
-        <meta name="viewport" content="initial-scale=1.0">
-        <meta charset="utf-8">
-        <style>
-                 /* Always set the map height explicitly to define the size of the div
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
             * element that contains the map. */
-            #map {
-                width: 500px;
-                height: 500px;
+        #map {
+            width: 700px;
+            height: 500px;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map; //объект для карты
+        var InfoWindow; //объект для инф. окошка на маркере
+        //вот здесь лучше всего подвязать .CSV файлик. Этот массив получается что-то типа .json файла
+        var massCoordinates = [
+            {
+                coordinates: { lat: 56.26, lng: 160.34 }, //Харчинский
+                //image: 'https://www.iconsdb.com/icons/preview/red/flag-xxl.png'
+                content: 'Харчинский'
+            },
+            {
+                coordinates: { lat: 55.58, lng: 160.36 } //Безымянный
+            },
+            {
+                coordinates: { lat: 55.45, lng: 160.37 } //Удины сопки
+            },
+            {
+                coordinates: { lat: 54.051608, lng: 159.443223 } //карымский
+            },
+            {
+                coordinates: { lat: 54.03, lng: 159.27 } //ареальное поле
+            },
+            {
+                coordinates: { lat: 56.04, lng: 160.28 } //плоские сопки
+            },
+            {
+                coordinates: { lat: 56.03, lng: 160.39 } //ключевской
+            },
+            {
+                coordinates: { lat: 53.59, lng: 159.28 } //академии наук
+            },
+            {
+                coordinates: { lat: 54.08, lng: 159.40 } //малый семячик
+            },
+        ];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 53.0584, lng: 158.6321 }, //петропавловс-камчатский - центр карты
+                zoom: 8
+            });
+
+            for (var i = 0; i < massCoordinates.length; i++) {
+                addMarkers(massCoordinates[i]);
             }
-                 /* Optional: Makes the sample page fill the window. */
-                 html, body {
-                     height: 100%;
-                     margin: 0;
-                     padding: 0;
-                 }
-        </style>
-    </head>
-    <body>
-        <div id="map"></div>
-        <script>
-            var map;
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 8
+
+            //Функция для добавления маркеров
+            function addMarkers(propertie) {
+                marker = new google.maps.Marker({
+                    position: propertie.coordinates,
+                    map: map //первый map - это параметр (вроде это <div id="map"></div> (см. выше)), который как бы принимает в качестве аргумента после двоеточия другой map, который уже явл. аргументом (картой), определенным выше
                 });
+
+                if (propertie.image) { marker.setIcon(propertie.image) } //для иконок маркера
+
+                if (propertie.info) { //для информационных окошек
+                    InfoWindow = new google.maps.InfoWindow({
+                        content: propertie.info
+                    })
+                    marker.addListener('click', function () {
+                        InfoWindow.open(map, marker);
+                    })
+
+
+                }
             }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
-                async defer></script>
-    </body>
-    </html>
+
+            //это фиговый вариант (если хотите посмотреть как работает - раскоменьте)
+            //Вызываем нашу функцию
+            //addMarkers({ lat: 56.26, lng: 160.34 });
+            //addMarkers({ lat: 55.58, lng: 160.36 });
+            //addMarkers({ lat: 55.45, lng: 160.37 });
+            //addMarkers({ lat: 54.051608, lng: 159.443223 });
+            //addMarkers({ lat: 54.03, lng: 159.27 });
+            //addMarkers({ lat: 56.04, lng: 160.28 });
+            //addMarkers({ lat: 56.03, lng: 160.39 });
+            //addMarkers({ lat: 53.59, lng: 159.28 });
+            //addMarkers({ lat: 54.08, lng: 159.40 });
+
+
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
+            async defer></script>
+</body>
+</html>
