@@ -33,32 +33,40 @@
         var massCoordinates = [
             {
                 coordinates: { lat: 56.26, lng: 160.34 }, //Харчинский
-                //image: 'https://www.iconsdb.com/icons/preview/red/flag-xxl.png'
-                content: 'Харчинский'
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTqrPic9-cpH3DbDR5iZ9n1beI3iWvjQOju2DK6Yd2958Ta1bdr&usqp=CAU',
+                info: '<h6> Харчинский </h6>'
             },
             {
-                coordinates: { lat: 55.58, lng: 160.36 } //Безымянный
+                coordinates: { lat: 55.58, lng: 160.36 }, //Безымянный
+                info: '<h6> Безымянный </h6>'
             },
             {
-                coordinates: { lat: 55.45, lng: 160.37 } //Удины сопки
+                coordinates: { lat: 55.45, lng: 160.37 }, //Удины сопки
+                info: '<h6> Удины сопки </h6>'
             },
             {
-                coordinates: { lat: 54.051608, lng: 159.443223 } //карымский
+                coordinates: { lat: 54.051608, lng: 159.443223 }, //карымский
+                info: '<h6> Карымский </h6>'
             },
             {
-                coordinates: { lat: 54.03, lng: 159.27 } //ареальное поле
+                coordinates: { lat: 54.03, lng: 159.27 }, //ареальное поле
+                info: '<h6> Ареальное поле </h6>'
             },
             {
-                coordinates: { lat: 56.04, lng: 160.28 } //плоские сопки
+                coordinates: { lat: 56.04, lng: 160.28 }, //плоские сопки
+                info: '<h6> Плоские сопки </h6>'
             },
             {
-                coordinates: { lat: 56.03, lng: 160.39 } //ключевской
+                coordinates: { lat: 56.03, lng: 160.39 }, //ключевской
+                info: '<h6> Ключевской </h6>'
             },
             {
-                coordinates: { lat: 53.59, lng: 159.28 } //академии наук
+                coordinates: { lat: 53.59, lng: 159.28 }, //академии наук
+                info: '<h6> Академии наук </h6>'
             },
             {
-                coordinates: { lat: 54.08, lng: 159.40 } //малый семячик
+                coordinates: { lat: 54.08, lng: 159.40 }, //малый семячик
+                info: '<h6> Малый семячик </h6>'
             },
         ];
 
@@ -88,11 +96,8 @@
                     marker.addListener('click', function () {
                         InfoWindow.open(map, marker);
                     })
-
-
                 }
             }
-
             //это фиговый вариант (если хотите посмотреть как работает - раскоменьте)
             //Вызываем нашу функцию
             //addMarkers({ lat: 56.26, lng: 160.34 });
@@ -104,8 +109,6 @@
             //addMarkers({ lat: 56.03, lng: 160.39 });
             //addMarkers({ lat: 53.59, lng: 159.28 });
             //addMarkers({ lat: 54.08, lng: 159.40 });
-
-
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
