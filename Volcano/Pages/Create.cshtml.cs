@@ -13,21 +13,24 @@ namespace Volcano.Pages
     public class CreateModel : PageModel
     {
         private readonly ApplicationContext _context;
+
         [BindProperty]
         public Volcanos Vulka { get; set; }
 
+        //ссылка на БД
         public CreateModel(ApplicationContext db)
         {
             _context = db;
         }
 
-        public IEnumerable<Volcanos> results { get; set; }
+        //public IEnumerable<Volcanos> results { get; set; }
 
-        public void OnGet()
-        {
-           // results = _context.Vulk.ToList();
-        }
+        //public void OnGet()
+        //{
+        //   // results = _context.Vulk.ToList();
+        //}
 
+        //Задание для добавления вулкана в БД
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
