@@ -28,6 +28,15 @@ namespace Volcano.Pages
            // results = _context.Vulk.ToList();
         }
 
+        public IActionResult OnPostFillDB()
+        {
+            //Volcanos order = _context.Vulk
+            //    .Where(o => o.Name == Vulka.Name)
+            //    .FirstOrDefault();
+            Console.WriteLine("111111111111111111111111111111111111111");
+            return null;
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)

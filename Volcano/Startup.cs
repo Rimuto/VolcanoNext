@@ -35,5 +35,6 @@ namespace Volcano
                 endpoints.MapRazorPages();
             });
         }
+
     }
 }
