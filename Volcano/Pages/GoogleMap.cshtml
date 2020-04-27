@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Google Map";
 }
-
 <html>
 <head>
     <title>Simple Map</title>
@@ -25,57 +24,86 @@
     </style>
 </head>
 <body>
+    @*@foreach (var hill in Model.Vulk)
+    {
+        @hill.Name
+    }*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--Здесь я попробую написать скрипт AJAX чтобы он брал инфу из БД и просто использовал ее для нашей карты-->
+    <script>
+        $(document).ready(function () {
+            GetData();
+        });
+        function GetData() {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                data: '{}',
+                dataType: "json",
+                success: function (data) {
+                    
+                    for (var i = 0; i < data.length; i++) {
+                        coordinates: { lat: data[i].EL + "." + data[i].ELM; lng: data[i].NL + "." + data[i].NLM; }
+                        info: data[i].Name;
+                        addMarkers(data[i]);
+                    }
+                },
+
+                error: alert("I am called"),
+            });
+        }
+    </script>
     <div id="map"></div>
     <script>
         function initMap() {
             //вот здесь лучше всего подвязать .CSV файлик. Этот массив получается что-то типа .json файла
-            var massCoordinates = [
-                {
-                    coordinates: { lat: 56.26, lng: 160.34 }, //Харчинский
-                    info: '<h6> Харчинский </h6>'
-                },
-                {
-                    coordinates: { lat: 55.58, lng: 160.36 }, //Безымянный
-                    info: '<h6> Безымянный </h6>'
-                },
-                {
-                    coordinates: { lat: 55.45, lng: 160.37 }, //Удины сопки
-                    info: '<h6> Удины сопки </h6>'
-                },
-                {
-                    coordinates: { lat: 54.051608, lng: 159.443223 }, //карымский
-                    info: '<h6> Карымский </h6>'
-                },
-                {
-                    coordinates: { lat: 54.03, lng: 159.27 }, //ареальное поле
-                    info: '<h6> Ареальное поле </h6>'
-                },
-                {
-                    coordinates: { lat: 56.04, lng: 160.28 }, //плоские сопки
-                    info: '<h6> Плоские сопки </h6>'
-                },
-                {
-                    coordinates: { lat: 56.03, lng: 160.39 }, //ключевской
-                    info: '<h6> Ключевской </h6>'
-                },
-                {
-                    coordinates: { lat: 53.59, lng: 159.28 }, //академии наук
-                    info: '<h6> Академии наук </h6>'
-                },
-                {
-                    coordinates: { lat: 54.08, lng: 159.40 }, //малый семячик
-                    info: '<h6> Малый семячик </h6>'
-                },
-            ];
+            //var massCoordinates = [
+            //    {
+            //        coordinates: { lat: 56.26, lng: 160.34 }, //Харчинский
+            //        info: '<h6> Харчинский </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 55.58, lng: 160.36 }, //Безымянный
+            //        info: '<h6> Безымянный </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 55.45, lng: 160.37 }, //Удины сопки
+            //        info: '<h6> Удины сопки </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 54.051608, lng: 159.443223 }, //карымский
+            //        info: '<h6> Карымский </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 54.03, lng: 159.27 }, //ареальное поле
+            //        info: '<h6> Ареальное поле </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 56.04, lng: 160.28 }, //плоские сопки
+            //        info: '<h6> Плоские сопки </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 56.03, lng: 160.39 }, //ключевской
+            //        info: '<h6> Ключевской </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 53.59, lng: 159.28 }, //академии наук
+            //        info: '<h6> Академии наук </h6>'
+            //    },
+            //    {
+            //        coordinates: { lat: 54.08, lng: 159.40 }, //малый семячик
+            //        info: '<h6> Малый семячик </h6>'
+            //    },
+            //];
 
             var myMap = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 53.0584, lng: 158.6321 }, //петропавловск-камчатский - центр карты
                 zoom: 8
             });
 
-            for (var i = 0; i < massCoordinates.length; i++) {
-                addMarkers(massCoordinates[i]);
-            }
+            //for (var i = 0; i < massCoordinates.length; i++) {
+            //    addMarkers(massCoordinates[i]);
+            //}
 
             //Функция для добавления маркеров
             function addMarkers(properties) {
