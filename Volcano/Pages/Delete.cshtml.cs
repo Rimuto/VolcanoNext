@@ -40,6 +40,7 @@ namespace Volcano.Pages
             };
             _context.Vulk.Remove(order);
             _context.SaveChangesAsync();
+            //RedirectToPage("Index");
             return RedirectToPage("Index");
         }
     }
