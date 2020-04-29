@@ -9,16 +9,18 @@ namespace Volcano.Models
     public class Volcanos
     {
         //первичный ключ
-       
         public int VulcanosID { get; set; }
+
         //Имя вулкана
         [Key]
         public string Name { get; set; }
+
         //координаты
         public int NL { get; set; } //northern latitude (северная широта)
-        public int NLM { get; set; }//минуты для северной широты
+        public int NLM { get; set; } //минуты для северной широты
         public int EL { get; set; } //eastern longitude (восточная долгота)
-        public int ELM { get; set; }//минуты для восточной долготы
+        public int ELM { get; set; } //минуты для восточной долготы
+
         //свойства вулкана
         //...
         [Display(Name = "свойство один")]
@@ -164,21 +166,5 @@ namespace Volcano.Models
         public bool P133 { get; set; }
         public bool P134 { get; set; }
         public bool P135 { get; set; }
-
-        //public void UpdateVolcano(Volcanos Vulkan)
-        //{
-        //    ApplicationContext context = new ApplicationContext();
-
-        //    var customer = context.Vulk
-        //        // Загрузить покупателя с фамилией "Иванов"
-        //        .Where(c => c.Name == Vulkan.Name)
-        //        .FirstOrDefault();
-
-        //    // Внести изменения
-        //    customer = Vulkan;
-
-        //    // Сохранить изменения
-        //    context.SaveChanges();
-        //}
     }
 }
