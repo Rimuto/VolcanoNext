@@ -30,13 +30,39 @@ namespace Volcano.Pages
 
         public IActionResult OnPostFillDB()
         {
-            //Volcanos order = _context.Vulk
-            //    .Where(o => o.Name == Vulka.Name)
-            //    .FirstOrDefault();
+
+            // string[] cars = File.ReadAllLines(@"C:\Cars.csv");
+            //Excel.Application ObjWorkExcel = new Excel.Application(); //открыть эксель
+            // Excel.Workbook ObjWorkBook = ObjWorkExcel.Workbooks.Open("C:\\Users\\Rimuto\\source\\repos\\Volcano\\Volcano\\Res\\¬улканы.xlsx", Type.Missing, true);
+
+
+            //DataTable dt = new DataTable();
+            using (StreamReader sr = new StreamReader("C:\\Users\\Rimuto\\source\\repos\\Volcano\\Volcano\\Res\\Vulkano1.csv", Encoding.UTF8))
+            {
+                string[] headers = sr.ReadLine().Split(';');
+                foreach (string header in headers)
+                {
+                    //dt.Columns.Add(header);
+                }
+                while (!sr.EndOfStream)
+                {
+                    string[] rows = sr.ReadLine().Split(';');
+                    //DataRow dr = dt.NewRow();
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        //dr[i] = rows[i];
+                    }
+                    //dt.Rows.Add(dr);
+                }
+
+            }
+
+            //ObjWorkBook.Close(false, Type.Missing, Type.Missing); //закрыть не сохран€€
+            //ObjWorkExcel.Quit(); // выйти из эксел€
+            //GC.Collect(); // убрать за собой
             Console.WriteLine("111111111111111111111111111111111111111");
             return null;
         }
-
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
