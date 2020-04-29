@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Google Map";
 }
-
 <html>
 <head>
     <title>Simple Map</title>
@@ -26,89 +25,68 @@
 </head>
 <body>
     <div id="map"></div>
+    <!--Здесь я попробую написать скрипт AJAX чтобы он брал инфу из БД и просто использовал ее для нашей карты-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        var map; //объект для карты
-        var InfoWindow; //объект для инф. окошка на маркере
-        //вот здесь лучше всего подвязать .CSV файлик. Этот массив получается что-то типа .json файла
-        var massCoordinates = [
-            {
-                coordinates: { lat: 56.26, lng: 160.34 }, //Харчинский
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTqrPic9-cpH3DbDR5iZ9n1beI3iWvjQOju2DK6Yd2958Ta1bdr&usqp=CAU',
-                info: '<h6> Харчинский </h6>'
-            },
-            {
-                coordinates: { lat: 55.58, lng: 160.36 }, //Безымянный
-                info: '<h6> Безымянный </h6>'
-            },
-            {
-                coordinates: { lat: 55.45, lng: 160.37 }, //Удины сопки
-                info: '<h6> Удины сопки </h6>'
-            },
-            {
-                coordinates: { lat: 54.051608, lng: 159.443223 }, //карымский
-                info: '<h6> Карымский </h6>'
-            },
-            {
-                coordinates: { lat: 54.03, lng: 159.27 }, //ареальное поле
-                info: '<h6> Ареальное поле </h6>'
-            },
-            {
-                coordinates: { lat: 56.04, lng: 160.28 }, //плоские сопки
-                info: '<h6> Плоские сопки </h6>'
-            },
-            {
-                coordinates: { lat: 56.03, lng: 160.39 }, //ключевской
-                info: '<h6> Ключевской </h6>'
-            },
-            {
-                coordinates: { lat: 53.59, lng: 159.28 }, //академии наук
-                info: '<h6> Академии наук </h6>'
-            },
-            {
-                coordinates: { lat: 54.08, lng: 159.40 }, //малый семячик
-                info: '<h6> Малый семячик </h6>'
-            },
-        ];
-
+        var myMap;
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 53.0584, lng: 158.6321 }, //петропавловс-камчатский - центр карты
+            myMap = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 53.0584, lng: 158.6321 }, //петропавловск-камчатский - центр карты
                 zoom: 8
             });
+        }
 
-            for (var i = 0; i < massCoordinates.length; i++) {
-                addMarkers(massCoordinates[i]);
-            }
+        $(document).ready(function () {
+            GetData();
+        });
+
+        var markers = [];
+
+        function GetData() {
+            $.ajax({
+                url: '/GoogleMap?handler=Hills',
+                type: "GET",
+                async: true,
+                contentType: "application/json",
+                data: "{}",
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        var marker = {};
+                        markers = [{
+                            coordinates: {
+                                lat: (Number((marker["NL"] = item.nl) + "." + (marker["NLM"] = item.nlm))),
+                                lng: (Number((marker["EL"] = item.el) + "." + (marker["ELM"] = item.elm)))
+                            },
+                            info: marker["name"] = item.name
+                        }]
+                        markers.push(marker);
+                        for (var i = 0; i < markers.length; i++) {
+                            addMarkers(markers[i]);
+                        }
+                    })
+                }
+            });
 
             //Функция для добавления маркеров
-            function addMarkers(propertie) {
-                marker = new google.maps.Marker({
-                    position: propertie.coordinates,
-                    map: map //первый map - это параметр (вроде это <div id="map"></div> (см. выше)), который как бы принимает в качестве аргумента после двоеточия другой map, который уже явл. аргументом (картой), определенным выше
+            function addMarkers(properties) {
+                var marker = new google.maps.Marker({
+                    position: properties.coordinates,
+                    map: myMap //первый map - это параметр (вроде это <div id="map"></div> (см. выше)), который как бы принимает в качестве аргумента после двоеточия другой map, который уже явл. аргументом (картой), определенным выше
                 });
 
-                if (propertie.image) { marker.setIcon(propertie.image) } //для иконок маркера
+                if (properties.image) { marker.setIcon(propertie.image) } //для иконок маркера
 
-                if (propertie.info) { //для информационных окошек
-                    InfoWindow = new google.maps.InfoWindow({
-                        content: propertie.info
+                if (properties.info) { //для информационных окошек
+                    var InfoWindow = new google.maps.InfoWindow({
+                        content: properties.info
                     })
                     marker.addListener('click', function () {
                         InfoWindow.open(map, marker);
+                        setTimeout(function () { InfoWindow.close(); }, '1500');
                     })
                 }
             }
-            //это фиговый вариант (если хотите посмотреть как работает - раскоменьте)
-            //Вызываем нашу функцию
-            //addMarkers({ lat: 56.26, lng: 160.34 });
-            //addMarkers({ lat: 55.58, lng: 160.36 });
-            //addMarkers({ lat: 55.45, lng: 160.37 });
-            //addMarkers({ lat: 54.051608, lng: 159.443223 });
-            //addMarkers({ lat: 54.03, lng: 159.27 });
-            //addMarkers({ lat: 56.04, lng: 160.28 });
-            //addMarkers({ lat: 56.03, lng: 160.39 });
-            //addMarkers({ lat: 53.59, lng: 159.28 });
-            //addMarkers({ lat: 54.08, lng: 159.40 });
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"

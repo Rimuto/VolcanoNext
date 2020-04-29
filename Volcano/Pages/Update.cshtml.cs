@@ -32,7 +32,7 @@ namespace Volcano.Pages
         
         public JsonResult OnGetFranky()
         {
-            Console.WriteLine("sdhfgjsdhgfjshdgfjsdhgfjsdgfjshgd");
+            //Console.WriteLine("sdhfgjsdhgfjshdgfjsdhgfjsdgfjshgd");
             string name = Request.Query["name"];
             var vuli = _context.Vulk.Where(b => b.Name == name).ToList();
             
