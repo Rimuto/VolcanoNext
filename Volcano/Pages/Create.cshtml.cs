@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Volcano.Models;
 using Microsoft.Extensions.Logging;
-using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
 using System.Text;
 
@@ -34,13 +33,6 @@ namespace Volcano.Pages
 
         public IActionResult OnPostFillDB()
         {
-
-            // string[] cars = File.ReadAllLines(@"C:\Cars.csv");
-            //Excel.Application ObjWorkExcel = new Excel.Application(); //открыть эксель
-            // Excel.Workbook ObjWorkBook = ObjWorkExcel.Workbooks.Open("C:\\Users\\Rimuto\\source\\repos\\Volcano\\Volcano\\Res\\¬улканы.xlsx", Type.Missing, true);
-
-
-            //DataTable dt = new DataTable();
             using (StreamReader sr = new StreamReader("C:\\Users\\Rimuto\\source\\repos\\Volcano\\Volcano\\Res\\Vulkano1.csv", Encoding.UTF8))
             {
                 string[] headers = sr.ReadLine().Split(';');
@@ -61,12 +53,10 @@ namespace Volcano.Pages
 
             }
 
-            //ObjWorkBook.Close(false, Type.Missing, Type.Missing); //закрыть не сохран€€
-            //ObjWorkExcel.Quit(); // выйти из эксел€
-            //GC.Collect(); // убрать за собой
             Console.WriteLine("111111111111111111111111111111111111111");
             return null;
         }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
