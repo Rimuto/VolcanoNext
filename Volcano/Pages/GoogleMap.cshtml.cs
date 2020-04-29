@@ -16,9 +16,9 @@ namespace Volcano.Pages
 	public class GoogleMapModel : PageModel
 	{
 		private readonly ApplicationContext _context;
-		public List<Volcanos> Vulk { get; set; } //это чтобы что-то
 		[BindProperty]
 		public Volcanos Vulka { get; set; }
+		public List<Volcanos> Vulk { get; set; } //это чтобы что-то
 
 		public GoogleMapModel(ApplicationContext db)
 		{
@@ -31,29 +31,11 @@ namespace Volcano.Pages
 
 		}
 
-		//public List<Volcanos> GetProperties(List<Volcanos> hill)
-		//{
-		//	hill = _context.Vulk.AsNoTracking().ToList();
-		//	return hill;
-
-		//	//foreach (var hill in Vulk)
-		//	//{
-		//	//	//var Name = hill.Name;
-		//	//	//var EL = hill.EL;
-		//	//	//var ELM = hill.ELM;
-		//	//	//var NL = hill.NL;
-		//	//	//var NLM = hill.NLM;
-		//	//}
-		//}
-		public IActionResult OnPostFranky()
+		public IActionResult OnGetHills()
 		{
-			string name = Request.Query["name"];
-			var order = new Volcanos
-			{
-				Name = name
-			};
-			_context.Vulk.Find(order);
-			return RedirectToPage("GoogleMap");
+			//string name = Request.Query["name"];
+			//var vuli = _context.Vulk.Where(b => b.Name == name).ToList();
+			return new JsonResult(Vulk);
 		}
 	}
 }
