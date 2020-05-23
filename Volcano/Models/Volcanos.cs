@@ -25,6 +25,7 @@ namespace Volcano.Models
         //...
         [Display(Name = "свойство один")]
         public bool P1 { get; set; }
+
         [Display(Name = "звездные войны")]
         public bool P2 { get; set; }
         [Display(Name = "мама мия")]

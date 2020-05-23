@@ -34,8 +34,10 @@ namespace Volcano.Pages
 
         public IActionResult OnPostFillDB()
         {
+            Nullable<bool> nu = null;
             using (StreamReader sr = new StreamReader(Environment.CurrentDirectory+"\\Res\\Vulkano1.csv", Encoding.UTF8))
             {
+
                 string[] headers = sr.ReadLine().Split(';');
                 foreach (string header in headers)
                 {
@@ -55,7 +57,7 @@ namespace Volcano.Pages
                     {
                         PropertyInfo info = Vulka.GetType().GetProperty("P"+i);
                         //info.SetValue();
-                        info.SetValue(Vulka, rows[i + 4] == "1" ? true:false) ;
+                        info.SetValue(Vulka, rows[i + 4] == "1" ? true: rows[i + 4] == ""? nu : false) ;
                         //var res = info.GetValue(Vulka);
                         //dr[i] = rows[i];
                     }
