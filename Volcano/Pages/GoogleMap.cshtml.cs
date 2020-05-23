@@ -9,7 +9,9 @@ using Volcano.Models;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-
+using System.Reflection;
+using System.Reflection.Metadata;
+using Microsoft.Data.Sqlite;
 
 namespace Volcano.Pages
 {
@@ -17,8 +19,9 @@ namespace Volcano.Pages
 	{
 		private readonly ApplicationContext _context;
 		[BindProperty]
+		public List<Volcanos> Vulk { get; set; }//это чтобы что-то
 		public Volcanos Vulka { get; set; }
-		public List<Volcanos> Vulk { get; set; } //это чтобы что-то
+		public Raspoznavanie raspoz;
 
 		public GoogleMapModel(ApplicationContext db)
 		{
@@ -31,10 +34,43 @@ namespace Volcano.Pages
 
 		}
 
+		//дл€ решени€ задачи распознавани€
+		public void Raspos()
+		{
+			//количество строк в бд. Ќужно дл€ двухмерного массива
+			var cntVulk = _context.Vulk.Count();
+			//var cntPrisn = Vulk.
+			Console.WriteLine(cntVulk);
+
+			int[,] prisn = new int[cntVulk, 135];
+			int counter = 0;
+			foreach (Volcanos tmp in Vulk)
+			{
+				for (int j = 0; j < 135; j++)
+				{
+					Vulka = new Volcanos();
+					PropertyInfo info = tmp.GetType().GetProperty("P" + (j + 1));
+
+					prisn[counter, j] = Convert.ToInt32(info.GetValue(tmp));
+
+					Console.WriteLine(" {0} ", prisn[counter, j]);
+				}
+				counter++;
+			}
+			int[] clq1 = { 50, 85 };
+			Raspoznavanie Raspos = new Raspoznavanie(clq1, prisn);
+
+			Raspos.FindCluster()
+		}
+
+		public IActionResult OnGetPriznak()
+		{
+			return new JsonResult(Vulk);
+		}
+
 		public IActionResult OnGetHills()
 		{
-			//string name = Request.Query["name"];
-			//var vuli = _context.Vulk.Where(b => b.Name == name).ToList();
+			Raspos();
 			return new JsonResult(Vulk);
 		}
 	}

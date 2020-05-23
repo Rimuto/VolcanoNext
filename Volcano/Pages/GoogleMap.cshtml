@@ -27,6 +27,8 @@
     <div id="map"></div>
     <!--Здесь я попробую написать скрипт AJAX чтобы он брал инфу из БД и просто использовал ее для нашей карты-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
+            async defer></script>
     <script>
         var myMap;
         function initMap() {
@@ -42,6 +44,22 @@
 
         var markers = [];
 
+        //$.ajax({
+        //    url: '/GoogleMap?handler=Priznak',
+        //    type: "GET",
+        //    async: true,
+        //    contentType: "application/json",
+        //    data: "{}",
+        //    dataType: "json",
+        //    success: function (data) {
+        //        $.each(data, function (index, item) {
+        //            var priznak = {};
+        //            priznak = [{
+        //                P1:
+        //            }]
+        //        })
+        //    }
+        //});
         function GetData() {
             $.ajax({
                 url: '/GoogleMap?handler=Hills',
@@ -89,7 +107,5 @@
             }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
-            async defer></script>
 </body>
 </html>
