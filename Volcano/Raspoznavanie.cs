@@ -304,7 +304,8 @@ namespace Volcano
 					result = c_class;
 				}
 			}
-			answer.Append("Принадлежит: " + result);
+			//if (count[c_])
+			answer.Append("Принадлежит: " + (result+1));
 			return answer;
 		}
 	}
