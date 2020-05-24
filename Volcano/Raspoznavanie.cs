@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace Volcano
 {
 	public class Raspoznavanie
 	{
+		//public StringBuilder answer = new StringBuilder();
 		int attr_q; //quantity of attributes
 		int cl_q; //quantity of classes a, b, c...
 		int[] cl_len; //classes length a1 a2 ... an
@@ -16,8 +18,9 @@ namespace Volcano
 		string logic;
 		List<double> weight;
 
-		public Raspoznavanie(int[] classes_length, int[,] matrix)
+		public Raspoznavanie(StringBuilder answer, int[] classes_length, int[,] matrix)
 		{
+			//answer = new StringBuilder();
 			//ширина матрицы =)
 			this.attr_q = matrix.GetLength(1);
 			//количество классов: а, б, с...
@@ -38,8 +41,8 @@ namespace Volcano
 					this.matrix[i, j] = matrix[i, j];
 			CreateM(sum);
 			DeleteFromM(FindMinQof1());
-			MakeClusters();
-			CalculateWeight();
+			MakeClusters(answer);
+			CalculateWeight(answer);
 		}
 
 		private void CreateM(int sum_quantity) //на входе общее количество подклассов
@@ -94,14 +97,14 @@ namespace Volcano
 			return minI;
 		}
 
-		private void PrintM()
+		private void PrintM(StringBuilder answer)
 		{
-			Console.WriteLine("Matrix M:");
+			answer.Append("Matrix M:");
 			for (int i = 0; i < M.Count(); i++)
 			{
 				for (int j = 0; j < attr_q; j++)
-					Console.Write(M[i][j] + " ");
-				Console.WriteLine();
+					answer.Append(M[i][j] + " ");
+				answer.Append("\n");
 			}
 		}
 
@@ -123,7 +126,7 @@ namespace Volcano
 			}
 		}
 
-		public void CreateLogic()
+		public void CreateLogic(StringBuilder answer)
 		{
 			logic = "";
 			string temp_logic = "";
@@ -149,10 +152,10 @@ namespace Volcano
 			if (logic[logic.Length - 1] == '*')
 				logic.Substring(0, logic.Length - 1);
 
-			Console.WriteLine(logic);
+			answer.Append(logic);
 		}
 
-		private void MakeClusters()
+		private void MakeClusters(StringBuilder answer)
 		{
 			List<List<List<int>>> newM = new List<List<List<int>>>();
 			for (int i = 0; i < M.Count(); i++)
@@ -171,10 +174,10 @@ namespace Volcano
 
 			for (int i = 0; i < feature.Count; i++)
 			{
-				Console.Write("Тест #" + i + " ");
+				answer.Append("Тест #" + i + " ");
 				for (int j = 0; j < feature[i].Count; j++)
-					Console.Write(feature[i][j] + " ");
-				Console.WriteLine();
+					answer.Append(feature[i][j] + " ");
+				answer.Append("\n");
 			}
 		}
 
@@ -214,10 +217,8 @@ namespace Volcano
 					else return 1;
 				});
 			}
-			if (level.Count % 2 == 1)
-			{
+			if (level.Count % 3 == 1)
 				temp1.Add(new List<List<int>>(level[level.Count - 1]));
-			}
 
 			//свойство поглощения
 			for (int i = 0; i < temp1.Count; i++)
@@ -230,6 +231,7 @@ namespace Volcano
 							maxi--;
 						}
 			}
+
 			return func1(temp1);
 		}
 
@@ -241,11 +243,11 @@ namespace Volcano
 			return true;
 		}
 
-		private void CalculateWeight()
+		private void CalculateWeight(StringBuilder answer)
 		{
 			weight = new List<double>();
 			int sum_q = feature.Count;
-			Console.WriteLine("Веса: ");
+			answer.Append("Веса: ");
 			for (int i = 0; i < attr_q; i++)
 			{
 				double temp = 0;
@@ -254,14 +256,14 @@ namespace Volcano
 				temp /= sum_q;
 				if (Double.IsNaN(temp))
 				{
-					Console.Clear();
-					Console.WriteLine("!!! Ошибка в данных !!!");
+					answer.Clear();
+					answer.Append("!!! Ошибка в данных !!!");
 					return;
 				}
 				else
 				{
 					weight.Add(temp);
-					Console.WriteLine("R" + i + ": " + temp);
+					answer.Append("R" + i + ": " + temp);
 				}
 			}
 		}

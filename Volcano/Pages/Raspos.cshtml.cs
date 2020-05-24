@@ -16,16 +16,17 @@ using System.Text;
 
 namespace Volcano.Pages
 {
-    public class RaspoznavanieModel : PageModel
+    public class RasposModel : PageModel
     {
         public StringBuilder answer = new StringBuilder();
         private readonly ApplicationContext _context;
         [BindProperty]
-        public List<Volcanos> Vulk { get; set; }//это чтобы что-то
         public Volcanos Vulka { get; set; }
+        //[BindProperty]
+        public List<Volcanos> Vulk { get; set; }//это чтобы что-то
         public Raspoznavanie raspoz;
 
-        public RaspoznavanieModel(ApplicationContext db)
+        public RasposModel(ApplicationContext db)
         {
             _context = db;
             Vulk = _context.Vulk.AsNoTracking().ToList();
@@ -55,7 +56,8 @@ namespace Volcano.Pages
                 counter++;
             }
             int[] clq1 = { 16, 18 };
-            raspoz = new Raspoznavanie(clq1, prisn);
+            raspoz = new Raspoznavanie(answer, clq1, prisn);
+            Console.WriteLine("2222222222222");
 
             //int maslng = 0;
             int[] proper = new int[135];
@@ -66,7 +68,8 @@ namespace Volcano.Pages
                 proper[i] = Convert.ToInt32(info.GetValue(Vulka));
                 if (proper[i] == 1)
                 {
-                    raspoz.FindCluster(proper);
+                    
+                    answer.Append(raspoz.FindCluster(proper));
                 }
             }
             return null;
