@@ -54,7 +54,7 @@
 <form method="POST" class="flex-container">
     <div>
         <select asp-for="Vulka.Name" id="select">
-            <option selected disabled>Выберите вулканчик</option>
+            <option selected disabled>Выберите вулкан</option>
             @foreach (var hill in Model.Vulk)
             {
                 <option value="@hill.Name">@hill.Name</option>

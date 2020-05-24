@@ -1,111 +1,9 @@
 ﻿@page
-@model Volcano.Pages.GoogleMapModel
+@model Volcano.Pages.ClusterModel
 @{
 }
-<div asp-validation-summary="All"></div>
-<head>
-        <title>Simple Map</title>
-        <meta name="viewport" content="initial-scale=1.0">
-        <meta charset="utf-8">
-        <style>
-            .flex-container div {
-                padding: 10px;
-                /*width: 100%*/
-            }
-
-            .box-1 {
-                display: flex;
-                /*width: 1000px;*/
-                flex-wrap: wrap;
-                flex-direction: row;
-            }
-            /* Always set the map height explicitly to define the size of the div
-                * element that contains the map. */
-            #map {
-                width: 700px;
-                height: 500px;
-            }
-            /* Optional: Makes the sample page fill the window. */
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
-    </head>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<div id="map"></div>
-       <!--Здесь я попробую написать скрипт AJAX чтобы он брал инфу из БД и просто использовал ее для нашей карты-->
-
-    <script>
-        var myMap;
-        function initMap() {
-            myMap = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 53.0584, lng: 158.6321 }, //петропавловск-камчатский - центр карты
-                zoom: 8
-            });
-        }
-
-        $(document).ready(function () {
-            GetData();
-        });
-
-        var markers = [];
-
-        function GetData() {
-            $.ajax({
-                url: '/GoogleMap?handler=Hills',
-                type: "GET",
-                async: true,
-                contentType: "application/json",
-                data: "{}",
-                dataType: "json",
-                success: function (data) {
-                    $.each(data, function (index, item) {
-                        var marker = {};
-                        markers = [{
-                            coordinates: {
-                                lat: (Number((marker["NL"] = item.nl) + "." + (marker["NLM"] = item.nlm))),
-                                lng: (Number((marker["EL"] = item.el) + "." + (marker["ELM"] = item.elm)))
-                            },
-                            info: marker["name"] = item.name
-                        }]
-                        markers.push(marker);
-                        for (var i = 0; i < markers.length; i++) {
-                            addMarkers(markers[i]);
-                        }
-                    })
-                }
-            });
-
-            //Функция для добавления маркеров
-            function addMarkers(properties) {
-                var marker = new google.maps.Marker({
-                    position: properties.coordinates,
-                    map: myMap //первый map - это параметр (вроде это <div id="map"></div> (см. выше)), который как бы принимает в качестве аргумента после двоеточия другой map, который уже явл. аргументом (картой), определенным выше
-                });
-
-                if (properties.image) { marker.setIcon(propertie.image) } //для иконок маркера
-
-                if (properties.info) { //для информационных окошек
-                    var InfoWindow = new google.maps.InfoWindow({
-                        content: properties.info
-                    })
-                    marker.addListener('click', function () {
-                        InfoWindow.open(map, marker);
-                        setTimeout(function () { InfoWindow.close(); }, '1500');
-                    })
-                }
-            }
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
-            async defer></script>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div asp-validation-summary="All"></div>
 <form method="POST" class="flex-container">
     <div class="box-1">
         <div><label>1: <input asp-for="Vulka.P1" /></label></div>
@@ -244,20 +142,20 @@
         <div><label>134: <input asp-for="Vulka.P134" /></label></div>
         <div><label>135: <input asp-for="Vulka.P135" /></label></div>
     </div>
-    <input type="submit" value="Кластеризировать" id="buttt" />
+    <input type="submit" value="Кластеризировать" id="butt" />
     @*<button id="buttt">Кластеризировать</button>*@
     <p>
         Результат<Br>
-        <textarea name="comment" cols="100" asp-for="answer" rows="30"></textarea>
+        <textarea name="comment" cols="40" rows="3"></textarea>
     </p>
 </form>
 <script>
-    $('#buttt').on('click', function () {
+    $('#butt').on('click', function () {
         $.ajax
             ({
-                url: '/GoogleMap?handler=Claster',
+                url: '/Cluster?handler=Claster',
                 type: "POST",
-                async: false,
+                async: true,
                 contentType: "application/json",
                 dataType: "json",
                 beforeSend: function (xhr) {
