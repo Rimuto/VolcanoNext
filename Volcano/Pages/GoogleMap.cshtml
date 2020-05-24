@@ -1,44 +1,46 @@
 ﻿@page
 @model Volcano.Pages.GoogleMapModel
 @{
+    ViewData["Title"] = "Google Map";
 }
 <div asp-validation-summary="All"></div>
+
 <head>
-        <title>Simple Map</title>
-        <meta name="viewport" content="initial-scale=1.0">
-        <meta charset="utf-8">
-        <style>
-            .flex-container div {
-                padding: 10px;
-                /*width: 100%*/
-            }
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        .flex-container div {
+            padding: 10px;
+            /*width: 100%*/
+        }
 
-            .box-1 {
-                display: flex;
-                /*width: 1000px;*/
-                flex-wrap: wrap;
-                flex-direction: row;
-            }
-            /* Always set the map height explicitly to define the size of the div
+        .box-1 {
+            display: flex;
+            /*width: 1000px;*/
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+        /* Always set the map height explicitly to define the size of the div
                 * element that contains the map. */
-            #map {
-                width: 700px;
-                height: 500px;
-            }
-            /* Optional: Makes the sample page fill the window. */
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
-    </head>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<div id="map"></div>
-       <!--Здесь я попробую написать скрипт AJAX чтобы он брал инфу из БД и просто использовал ее для нашей карты-->
-
+        #map {
+            width: 700px;
+            height: 500px;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <!--Здесь я попробую написать скрипт AJAX чтобы он брал инфу из БД и просто использовал ее для нашей карты-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
+            async defer></script>
     <script>
         var myMap;
         function initMap() {
@@ -101,11 +103,9 @@
             }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWgl09DfBHvTI1LTCuZBUSprB66z2SAQ&callback=initMap"
-            async defer></script>
+</body>
 
-
-
+<h1>Кластеризация</h1>
 <form method="POST" class="flex-container">
     <div class="box-1">
         <div><label>1: <input asp-for="Vulka.P1" /></label></div>
@@ -245,7 +245,6 @@
         <div><label>135: <input asp-for="Vulka.P135" /></label></div>
     </div>
     <input type="submit" value="Кластеризировать" id="buttt" />
-    @*<button id="buttt">Кластеризировать</button>*@
     <p>
         Результат<Br>
         <textarea name="comment" cols="100" asp-for="answer" rows="30"></textarea>

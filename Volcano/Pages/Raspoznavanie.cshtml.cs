@@ -12,11 +12,13 @@ using System.Configuration;
 using System.Reflection;
 using System.Reflection.Metadata;
 using Microsoft.Data.Sqlite;
+using System.Text;
 
 namespace Volcano.Pages
 {
     public class RaspoznavanieModel : PageModel
     {
+        public StringBuilder answer = new StringBuilder();
         private readonly ApplicationContext _context;
         [BindProperty]
         public List<Volcanos> Vulk { get; set; }//это чтобы что-то
@@ -30,7 +32,7 @@ namespace Volcano.Pages
         }
 
         //для решения задачи распознавания
-        public void Raspos()
+        public async Task<IActionResult> OnPostAsync()
         {
             //количество строк в бд. Нужно для двухмерного массива
             var cntVulk = _context.Vulk.Count();
@@ -43,7 +45,7 @@ namespace Volcano.Pages
             {
                 for (int j = 0; j < 135; j++)
                 {
-                    Vulka = new Volcanos();
+                    //Vulka = new Volcanos();
                     PropertyInfo info = tmp.GetType().GetProperty("P" + (j + 1));
 
                     prisn[counter, j] = Convert.ToInt32(info.GetValue(tmp));
@@ -52,27 +54,32 @@ namespace Volcano.Pages
                 }
                 counter++;
             }
-            int[] clq1 = { 50, 85 };
-            Raspoznavanie Raspos = new Raspoznavanie(clq1, prisn);
+            int[] clq1 = { 16, 18 };
+            raspoz = new Raspoznavanie(clq1, prisn);
 
-            int maslng = 0;
-            bool[] proper = new bool[135];
+            //int maslng = 0;
+            int[] proper = new int[135];
             for (int i = 0; i < 135; i++)
             {
                 PropertyInfo info = Vulka.GetType().GetProperty("P" + (i + 1));
                 //info.SetValue();
-                proper[i] = Convert.ToBoolean(info.GetValue(Vulka));
-                if (proper[i] == true)
+                proper[i] = Convert.ToInt32(info.GetValue(Vulka));
+                if (proper[i] == 1)
                 {
-                    maslng++;
+                    raspoz.FindCluster(proper);
                 }
-                //Raspos.FindCluster(Convert.ToInt32(proper[i]));
             }
+            return null;
         }
 
         public void OnGet()
         {
 
+        }
+
+        public IActionResult OnPostRaspos()
+        {
+            return new JsonResult(Vulk);
         }
     }
 }
