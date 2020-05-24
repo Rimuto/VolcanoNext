@@ -5,7 +5,7 @@
 }
 
 <div asp-validation-summary="All"></div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <h1>Распознавание вулканов</h1>
 <head>
     <meta name="viewport" content="initial-scale=1.0">
@@ -22,16 +22,8 @@
             flex-wrap: wrap;
             flex-direction: row;
         }
-
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
     </style>
 </head>
-
 <form method="POST" class="flex-container">
     <div class="box-1">
         <div><label>1: <input asp-for="Vulka.P1" /></label></div>

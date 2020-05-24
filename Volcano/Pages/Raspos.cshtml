@@ -1,9 +1,28 @@
 ﻿@page
-@model Volcano.Pages.ClusterModel
+@model Volcano.Pages.RasposModel
 @{
 }
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <div asp-validation-summary="All"></div>
+<div asp-validation-summary="All"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<h1>Распознавание вулканов</h1>
+<head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        .flex-container div {
+            padding: 10px;
+            /*width: 100%*/
+        }
+
+        .box-1 {
+            display: flex;
+            /*width: 1000px;*/
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<h1>Кластеризация</h1>
 <form method="POST" class="flex-container">
     <div class="box-1">
         <div><label>1: <input asp-for="Vulka.P1" /></label></div>
@@ -142,29 +161,9 @@
         <div><label>134: <input asp-for="Vulka.P134" /></label></div>
         <div><label>135: <input asp-for="Vulka.P135" /></label></div>
     </div>
-    <input type="submit" value="Кластеризировать" id="butt" />
-    @*<button id="buttt">Кластеризировать</button>*@
+    <input type="submit" value="Кластеризировать" id="buttt" />
     <p>
         Результат<Br>
-        <textarea name="comment" cols="40" rows="3"></textarea>
+        <textarea name="comment" cols="100" asp-for="answer" rows="30"></textarea>
     </p>
 </form>
-<script>
-    $('#butt').on('click', function () {
-        $.ajax
-            ({
-                url: '/Cluster?handler=Claster',
-                type: "POST",
-                async: true,
-                contentType: "application/json",
-                dataType: "json",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN",
-                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                },
-                success: function (data) {
-
-                },
-            });
-    });
-</script>
