@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Volcano
 {
 	public class Raspoznavanie
 	{
-		//public StringBuilder answer = new StringBuilder();
+		StringBuilder answer = new StringBuilder();
 		int attr_q; //quantity of attributes
 		int cl_q; //quantity of classes a, b, c...
 		int[] cl_len; //classes length a1 a2 ... an
@@ -18,9 +18,8 @@ namespace Volcano
 		string logic;
 		List<double> weight;
 
-		public Raspoznavanie(StringBuilder answer, int[] classes_length, int[,] matrix)
+		public Raspoznavanie(int[] classes_length, int[,] matrix)
 		{
-			//answer = new StringBuilder();
 			//ширина матрицы =)
 			this.attr_q = matrix.GetLength(1);
 			//количество классов: а, б, с...
@@ -40,9 +39,11 @@ namespace Volcano
 				for (int j = 0; j < attr_q; j++)
 					this.matrix[i, j] = matrix[i, j];
 			CreateM(sum);
+			PrintM();
 			DeleteFromM(FindMinQof1());
-			MakeClusters(answer);
-			CalculateWeight(answer);
+			PrintM();
+			MakeClusters();
+			CalculateWeight();
 		}
 
 		private void CreateM(int sum_quantity) //на входе общее количество подклассов
@@ -97,14 +98,14 @@ namespace Volcano
 			return minI;
 		}
 
-		private void PrintM(StringBuilder answer)
+		private void PrintM()
 		{
-			answer.Append("Matrix M:");
+			Console.WriteLine("Matrix M:");
 			for (int i = 0; i < M.Count(); i++)
 			{
 				for (int j = 0; j < attr_q; j++)
-					answer.Append(M[i][j] + " ");
-				answer.Append("\n");
+					Console.Write(M[i][j] + " ");
+				Console.WriteLine();
 			}
 		}
 
@@ -126,7 +127,7 @@ namespace Volcano
 			}
 		}
 
-		public void CreateLogic(StringBuilder answer)
+		public void CreateLogic()
 		{
 			logic = "";
 			string temp_logic = "";
@@ -152,10 +153,10 @@ namespace Volcano
 			if (logic[logic.Length - 1] == '*')
 				logic.Substring(0, logic.Length - 1);
 
-			answer.Append(logic);
+			Console.WriteLine(logic);
 		}
 
-		private void MakeClusters(StringBuilder answer)
+		private void MakeClusters()
 		{
 			List<List<List<int>>> newM = new List<List<List<int>>>();
 			for (int i = 0; i < M.Count(); i++)
@@ -174,10 +175,10 @@ namespace Volcano
 
 			for (int i = 0; i < feature.Count; i++)
 			{
-				answer.Append("Тест #" + i + " ");
+				answer.Append("Тест #" + i + " \n");
 				for (int j = 0; j < feature[i].Count; j++)
-					answer.Append(feature[i][j] + " ");
-				answer.Append("\n");
+					answer.Append(feature[i][j] + " \n");
+				answer.Append("\n"); ;
 			}
 		}
 
@@ -217,8 +218,10 @@ namespace Volcano
 					else return 1;
 				});
 			}
-			if (level.Count % 3 == 1)
+			if (level.Count % 2 == 1)
+			{
 				temp1.Add(new List<List<int>>(level[level.Count - 1]));
+			}
 
 			//свойство поглощения
 			for (int i = 0; i < temp1.Count; i++)
@@ -231,7 +234,6 @@ namespace Volcano
 							maxi--;
 						}
 			}
-
 			return func1(temp1);
 		}
 
@@ -243,11 +245,11 @@ namespace Volcano
 			return true;
 		}
 
-		private void CalculateWeight(StringBuilder answer)
+		private void CalculateWeight()
 		{
 			weight = new List<double>();
 			int sum_q = feature.Count;
-			answer.Append("Веса: ");
+			answer.Append("Веса: \n");
 			for (int i = 0; i < attr_q; i++)
 			{
 				double temp = 0;
@@ -256,22 +258,23 @@ namespace Volcano
 				temp /= sum_q;
 				if (Double.IsNaN(temp))
 				{
-					answer.Clear();
-					answer.Append("!!! Ошибка в данных !!!");
+					Console.Clear();
+					Console.WriteLine("!!! Ошибка в данных !!!");
 					return;
 				}
 				else
 				{
 					weight.Add(temp);
-					answer.Append("R" + i + ": " + temp);
+					answer.Append("R" + i + ": " + temp+"\n");
 				}
 			}
 		}
 
-		public int FindCluster(int[] obj)
+		public StringBuilder FindCluster(int[] obj)
 		{
+
 			int result = -1;
-			if (obj.Length != attr_q) return -1; //ЕРРОР
+			if (obj.Length != attr_q) return answer.Append("Error"); //ЕРРОР
 			int max_val = -1;
 
 			int[] count = new int[cl_q];
@@ -294,13 +297,16 @@ namespace Volcano
 						if (ok) count[c_class]++;
 					}
 				}
+				answer.Append("Класс " + (c_class+1) + " = " + count[c_class]+"\n");
 				if (count[c_class] > max_val)
 				{
 					max_val = count[c_class];
 					result = c_class;
 				}
 			}
-			return result;
+			//if (count[c_])
+			answer.Append("Принадлежит: " + (result+1));
+			return answer;
 		}
 	}
 }

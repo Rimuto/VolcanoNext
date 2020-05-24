@@ -1,4 +1,10 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,10 +26,8 @@ namespace Volcano.Pages
     {
         public StringBuilder answer = new StringBuilder();
         private readonly ApplicationContext _context;
-        [BindProperty]
+        public List<Volcanos> Vulk { get; set; }//��� ����� ���-��
         public Volcanos Vulka { get; set; }
-        //[BindProperty]
-        public List<Volcanos> Vulk { get; set; }//это чтобы что-то
         public Raspoznavanie raspoz;
 
         public RasposModel(ApplicationContext db)
@@ -32,33 +36,12 @@ namespace Volcano.Pages
             Vulk = _context.Vulk.AsNoTracking().ToList();
         }
 
-        //для решения задачи распознавания
-        public async Task<IActionResult> OnPostAsync()
+        public void OnGet()
         {
-            //количество строк в бд. Нужно для двухмерного массива
-            var cntVulk = _context.Vulk.Count();
-            //var cntPrisn = Vulk.
-            Console.WriteLine(cntVulk);
+        }
 
-            int[,] prisn = new int[cntVulk, 135];
-            int counter = 0;
-            foreach (Volcanos tmp in Vulk)
-            {
-                for (int j = 0; j < 135; j++)
-                {
-                    //Vulka = new Volcanos();
-                    PropertyInfo info = tmp.GetType().GetProperty("P" + (j + 1));
-
-                    prisn[counter, j] = Convert.ToInt32(info.GetValue(tmp));
-
-                    Console.WriteLine(" {0} ", prisn[counter, j]);
-                }
-                counter++;
-            }
-            int[] clq1 = { 16, 18 };
-            raspoz = new Raspoznavanie(answer, clq1, prisn);
-            Console.WriteLine("2222222222222");
-
+        public IActionResult OnPost()
+        {
             //int maslng = 0;
             int[] proper = new int[135];
             for (int i = 0; i < 135; i++)
@@ -68,21 +51,10 @@ namespace Volcano.Pages
                 proper[i] = Convert.ToInt32(info.GetValue(Vulka));
                 if (proper[i] == 1)
                 {
-                    
-                    answer.Append(raspoz.FindCluster(proper));
+                    raspoz.FindCluster(proper);
                 }
             }
             return null;
-        }
-
-        public void OnGet()
-        {
-
-        }
-
-        public IActionResult OnPostRaspos()
-        {
-            return new JsonResult(Vulk);
         }
     }
 }
